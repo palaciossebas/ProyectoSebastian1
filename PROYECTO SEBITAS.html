@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Proyecto Sebastian</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+      color: #333;
+    }
+
+    .contenedor {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background: #ffffff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .foto-izq {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 3px solid #2980b9;
+      object-fit: cover;
+    }
+
+    .logo-colegio {
+      width: 120px;
+      height: 70px;
+      object-fit: contain;
+    }
+
+    .texto {
+      flex: 1;
+      margin: 0 20px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #2c3e50;
+      text-align: center;
+      user-select: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 30px 20px 10px;
+      font-size: 2rem;
+      color: #2c3e50;
+    }
+
+    .subtitulo {
+      text-align: center;
+      font-weight: 500;
+      font-size: 1rem;
+      background: #e3f2fd;
+      color: #1565c0;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+
+    .menu-wrapper {
+      max-width: 1000px;
+      margin: 0 auto 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      background-color: transparent;
+    }
+
+    ul.principal-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: space-around;
+      background: linear-gradient(to right, #3498db, #6c5ce7);
+      border-radius: 12px;
+      overflow: visible;
+      position: relative;
+      z-index: 100;
+    }
+
+    ul.principal-menu > li {
+      position: relative;
+      flex: 1;
+      text-align: center;
+      user-select: none;
+    }
+
+    ul.principal-menu > li > a {
+      display: block;
+      padding: 16px;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease, color 0.3s ease;
+      cursor: pointer;
+    }
+
+    ul.principal-menu > li > a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #d1e8ff;
+    }
+
+    ul.sub-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 160px;
+      background: #ffffff;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-15px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      border-radius: 12px;
+      z-index: 10;
+      pointer-events: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    ul.principal-menu > li:hover ul.sub-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    ul.principal-menu > li.active ul.sub-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    ul.sub-menu li {
+      border-bottom: 1px solid #eee;
+      list-style: none;
+    }
+
+    ul.sub-menu li:last-child {
+      border-bottom: none;
+    }
+
+    ul.sub-menu li a {
+      display: block;
+      padding: 12px 20px;
+      color: #333;
+      text-decoration: none;
+      transition: background 0.25s, color 0.25s;
+      font-size: 14px;
+      cursor: pointer;
+      white-space: nowrap;
+      border-radius: 8px;
+    }
+
+    ul.sub-menu li a:hover {
+      background: #3498db;
+      color: #fff;
+    }
+
+    /* Imagen de programación debajo del menú */
+    .imagen-programacion {
+      text-align: center;
+      margin: 30px auto 50px auto;
+      max-width: 600px;
+    }
+
+    .imagen-programacion img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      ul.principal-menu {
+        flex-direction: column;
+      }
+
+      ul.principal-menu > li {
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      ul.sub-menu {
+        position: relative;
+        box-shadow: none;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
+        width: 100%;
+        border-radius: 0;
+        pointer-events: auto !important;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        margin-left: 0;
+      }
+
+      ul.principal-menu > li.active ul.sub-menu {
+        max-height: 500px;
+      }
+
+      ul.sub-menu li a:hover {
+        background: #6c5ce7;
+        color: #fff;
+      }
+
+      .contenedor {
+        flex-wrap: wrap;
+      }
+
+      .texto {
+        order: 3;
+        width: 100%;
+        margin: 10px 0 0 0;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="contenedor">
+    <img src="C:\Users\angel\Downloads\Imagen de WhatsApp 2025-06-15 a las 12.19.03_611473ae.jpg" alt="Foto Personal" class="foto-izq" />
+    <div class="texto">Vilcacundo Palacios Emanuel Sebastian - 3ro BT M</div>
+    <img src="C:\Users\angel\Downloads\descarga23.jpeg" alt="Logo Colegio" class="logo-colegio" />
+  </div>
+
+  <h1>Proyecto Técnico Informática 2025 - 2026</h1>
+
+  <div class="subtitulo">
+    Proyecto Técnico en Diseño Web, Soporte, Programación y Ofimática
+  </div>
+
+  <div class="menu-wrapper">
+    <ul class="principal-menu" id="menu">
+      <li>
+        <a href="javascript:void(0);" class="menu-link">Diseño y Desarrollo Web</a>
+        <ul class="sub-menu">
+          <li><a href="C:\Users\angel\Downloads\IMAGEN TRI1.html">Trimestre 1</a></li>
+          <li><a href="#">Trimestre 2</a></li>
+          <li><a href="#">Trimestre 3</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="javascript:void(0);" class="menu-link">Soporte Técnico</a>
+        <ul class="sub-menu">
+          <li><a href="#">Trimestre 1</a></li>
+          <li><a href="#">Trimestre 2</a></li>
+          <li><a href="#">Trimestre 3</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="javascript:void(0);" class="menu-link">Sistemas Operativos y Redes</a>
+        <ul class="sub-menu">
+          <li><a href="#">Trimestre 1</a></li>
+          <li><a href="#">Trimestre 2</a></li>
+          <li><a href="#">Trimestre 3</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="javascript:void(0);" class="menu-link">Programación y Base de Datos</a>
+        <ul class="sub-menu">
+          <li><a href="#">Trimestre 1</a></li>
+          <li><a href="#">Trimestre 2</a></li>
+          <li><a href="#">Trimestre 3</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="javascript:void(0);" class="menu-link">Aplicaciones Ofimática Locales y En Linea</a>
+        <ul class="sub-menu">
+          <li><a href="#">Trimestre 1</a></li>
+          <li><a href="#">Trimestre 2</a></li>
+          <li><a href="#">Trimestre 3</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="imagen-programacion">
+    <img src="C:\Users\angel\Downloads\diseC3B1o-web-ui-ux-concepto-3d-de-desarrollo-web.jpg_s1024x1024wisk20czA5hCSWVI89lirCixzlAuuLWlTPNIaZg9UPZxwnF5FM.jpg" alt="Imagen de Programación" />
+  </div>
+
+  <script>
+    document.querySelectorAll('.menu-link').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const parentLi = e.target.parentElement;
+        document.querySelectorAll('.principal-menu > li').forEach(li => {
+          if (li !== parentLi) {
+            li.classList.remove('active');
+          }
+        });
+        parentLi.classList.toggle('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
